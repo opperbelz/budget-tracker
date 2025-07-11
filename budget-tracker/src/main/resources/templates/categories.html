@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Manage Categories</title>
+</head>
+<body>
+<div id="content">
+    <h1>Manage Categories</h1>
+
+    <div class="card card-body mb-4">
+        <h2>Add New Category</h2>
+        <!-- Используем th:object для привязки формы к DTO -->
+        <form th:action="@{/categories}" th:object="${categoryDto}" method="post">
+            <div class="input-group">
+                <!-- Используем th:field для привязки поля ввода к полю в DTO -->
+                <input type="text" th:field="*{name}" class="form-control"
+                       th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+                       placeholder="Category Name">
+                <button type="submit" class="btn btn-primary">Add Category</button>
+            </div>
+            <!-- Показываем сообщение об ошибке, если оно есть -->
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback d-block">
+                Error message
+            </div>
+        </form>
+    </div>
+
+    <h2>Existing Categories</h2>
+    <ul class="list-group">
+        <li th:each="category : ${categories}" class="list-group-item" th:text="${category.name}"></li>
+        <li th:if="${categories.isEmpty()}" class="list-group-item">No categories created yet.</li>
+    </ul>
+</div>
+</body>
+</html>

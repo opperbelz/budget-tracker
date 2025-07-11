@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::#content})}">
+<head>
+    <title>Manage Accounts</title>
+</head>
+<body>
+<div id="content">
+    <h1>Manage Accounts</h1>
+
+    <div class="card card-body mb-4">
+        <h2>Add New Account</h2>
+        <form th:action="@{/accounts}" method="post">
+            <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="Account Name" required>
+                <button type="submit" class="btn btn-primary">Add Account</button>
+            </div>
+        </form>
+    </div>
+
+    <h2>Existing Accounts</h2>
+    <ul class="list-group">
+        <li th:each="account : ${accounts}" class="list-group-item" th:text="${account.name}"></li>
+        <li th:if="${accounts.isEmpty()}" class="list-group-item">No accounts created yet.</li>
+    </ul>
+</div>
+</body>
+</html>
