@@ -8,11 +8,11 @@ The application features a dashboard for viewing account balances and tracks all
 
 Main technologies used in project:
 
-Spring Framework
-Spring Boot
-Spring Data (JPA, Hibernate) (default setup with in-memory H2 DB)
-Spring Security
-Spring Web MVC
+Spring Framework  
+Spring Boot  
+Spring Data (JPA, Hibernate) (default setup with in-memory H2 DB)  
+Spring Security  
+Spring Web MVC  
 
 For testing:
 JUnit
